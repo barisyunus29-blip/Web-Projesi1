@@ -20,7 +20,7 @@
         <option value="elektrik">Elektrik</option>
     </select>
 
-    <div class="cart" onclick="toggleCart()">
+    <div class="cart" id="cartButton">
         🛒 <span id="cart-count">0</span>
     </div>
 </header>
@@ -34,6 +34,9 @@
     <h2>Ürünler</h2>
     <div class="product-list" id="productList"></div>
 </section>
+
+<!-- Blur Arka Plan -->
+<div class="overlay" id="overlay"></div>
 
 <!-- SEPET PANELİ -->
 <div class="cart-panel" id="cartPanel">
