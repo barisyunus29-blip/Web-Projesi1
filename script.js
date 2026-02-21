@@ -1,36 +1,10 @@
-let cartCount = 0;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const products = [
-    { 
-        name: "Fren Balatası", 
-        category: "fren", 
-        price: 750,
-        image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e"
-    },
-    { 
-        name: "Disk Fren Seti", 
-        category: "fren", 
-        price: 1200,
-        image: "https://images.unsplash.com/photo-1606577924006-27d39b132ae2"
-    },
-    { 
-        name: "Motor Yağı", 
-        category: "motor", 
-        price: 450,
-        image: "https://images.unsplash.com/photo-1625047509248-ec889cbff17f"
-    },
-    { 
-        name: "Far", 
-        category: "elektrik", 
-        price: 1800,
-        image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d"
-    },
-    { 
-        name: "Akü 72Ah", 
-        category: "elektrik", 
-        price: 2500,
-        image: "https://images.unsplash.com/photo-1581091215367-59ab6c7f4d2e"
-    }
+    { name: "Fren Balatası", category: "fren", price: 750, image: "images/fren.jpg" },
+    { name: "Motor Yağı", category: "motor", price: 450, image: "images/motor.jpg" },
+    { name: "Far", category: "elektrik", price: 1800, image: "images/far.jpg" },
+    { name: "Akü 72Ah", category: "elektrik", price: 2500, image: "images/aku.jpg" }
 ];
 
 const productList = document.getElementById("productList");
@@ -44,9 +18,10 @@ function displayProducts() {
     const selectedCategory = categoryFilter.value;
 
     const filteredProducts = products.filter(product => {
-        const matchesSearch = product.name.toLowerCase().includes(searchValue);
-        const matchesCategory = selectedCategory === "all" || product.category === selectedCategory;
-        return matchesSearch && matchesCategory;
+        return (
+            product.name.toLowerCase().includes(searchValue) &&
+            (selectedCategory === "all" || product.category === selectedCategory)
+        );
     });
 
     filteredProducts.forEach(product => {
@@ -54,22 +29,120 @@ function displayProducts() {
         div.classList.add("product");
 
         div.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
+            <img src="${product.image}">
             <h3>${product.name}</h3>
-            <p>Fiyat: ₺${product.price}</p>
-            <button onclick="addToCart()">Sepete Ekle</button>
+            <p>₺${product.price}</p>
+            <button onclick='addToCart(${JSON.stringify(product)})'>Sepete Ekle</button>
         `;
 
         productList.appendChild(div);
     });
 }
 
-function addToCart() {
-    cartCount++;
-    document.getElementById("cart-count").innerText = cartCount;
+function addToCart(product) {
+    const existing = cart.find(item => item.name === product.name);
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+
+    saveCart();
+    updateCart();
+}
+
+function updateCart() {
+    const cartItems = document.getElementById("cartItems");
+    const totalPrice = document.getElementById("totalPrice");
+    const cartCount = document.getElementById("cart-count");
+
+    cartItems.innerHTML = "";
+    let total = 0;
+    let count = 0;
+
+    cart.forEach((item, index) => {
+        total += item.price * item.quantity;
+        count += item.quantity;
+
+        const li = document.createElement("li");
+        li.innerHTML = `
+            ${item.name} - ₺${item.price} x ${item.quantity}<br>
+            <button onclick="increaseQty(${index})">+</button>
+            <button onclick="decreaseQty(${index})">-</button>
+            <button onclick="removeItem(${index})">Sil</button>
+        `;
+        cartItems.appendChild(li);
+    });
+
+    totalPrice.innerText = total;
+    cartCount.innerText = count;
+}
+
+function increaseQty(index) {
+    cart[index].quantity++;
+    saveCart();
+    updateCart();
+}
+
+function decreaseQty(index) {
+    if (cart[index].quantity > 1) {
+        cart[index].quantity--;
+    } else {
+        cart.splice(index, 1);
+    }
+    saveCart();
+    updateCart();
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    updateCart();
+}
+
+function clearCart() {
+    cart = [];
+    saveCart();
+    updateCart();
+}
+
+function toggleCart() {
+    document.getElementById("cartPanel").classList.toggle("active");
+}
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Sepet boş!");
+        return;
+    }
+
+    let summary = "<h4>Sipariş Özeti</h4>";
+    let total = 0;
+
+    cart.forEach(item => {
+        summary += `<p>${item.name} x ${item.quantity}</p>`;
+        total += item.price * item.quantity;
+    });
+
+    summary += `<strong>Toplam: ₺${total}</strong>`;
+    summary += `<br><br><button onclick="completePayment()">Ödeme Yap</button>`;
+
+    document.getElementById("orderSummary").innerHTML = summary;
+}
+
+function completePayment() {
+    alert("Ödeme Başarılı! 🎉");
+    clearCart();
+    document.getElementById("orderSummary").innerHTML = "";
 }
 
 searchInput.addEventListener("input", displayProducts);
 categoryFilter.addEventListener("change", displayProducts);
 
 displayProducts();
+updateCart();
