@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoParça | Yedek Parça Satış</title>
+    <title>AutoParça | Yedek Parça</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
     <div class="logo">AutoParça</div>
+
     <input type="text" id="searchInput" placeholder="Ürün ara...">
+
     <select id="categoryFilter">
         <option value="all">Tüm Kategoriler</option>
         <option value="motor">Motor</option>
         <option value="fren">Fren</option>
         <option value="elektrik">Elektrik</option>
     </select>
-    <div class="cart">🛒 <span id="cart-count">0</span></div>
+
+    <div class="cart" onclick="toggleCart()">
+        🛒 <span id="cart-count">0</span>
+    </div>
 </header>
 
 <section class="hero">
-    <div class="hero-content">
-        <h1>Aracınıza Uygun Parçalar</h1>
-        <p>Garantili ve Uygun Fiyatlı Ürünler</p>
-    </div>
+    <h1>Aracınıza Uygun Parçalar</h1>
+    <p>Kaliteli, Garantili ve Uygun Fiyatlı Ürünler</p>
 </section>
 
 <section class="products">
@@ -32,31 +35,31 @@
     <div class="product-list" id="productList"></div>
 </section>
 
-<!-- FOOTER -->
+<!-- SEPET PANELİ -->
+<div class="cart-panel" id="cartPanel">
+    <h3>Sepetim</h3>
+    <ul id="cartItems"></ul>
+    <p><strong>Toplam: ₺<span id="totalPrice">0</span></strong></p>
+    <button onclick="clearCart()">Sepeti Temizle</button>
+    <button onclick="checkout()">Siparişi Tamamla</button>
+    <div id="orderSummary"></div>
+</div>
+
 <footer>
     <div class="footer-container">
-        
         <div class="footer-box">
             <h3>İletişim</h3>
-            <p>📍 Kırşehir, Türkiye</p>
-            <p>📞 0555 555 55 55</p>
-            <p>✉ info@autoparca.com</p>
+            <p>Kırşehir, Türkiye</p>
+            <p>0555 555 55 55</p>
+            <p>info@autoparca.com</p>
         </div>
 
         <div class="footer-box">
-            <h3>Ulaşım</h3>
+            <h3>Çalışma Saatleri</h3>
             <p>Hafta içi: 09:00 - 18:00</p>
             <p>Cumartesi: 10:00 - 16:00</p>
             <p>Pazar: Kapalı</p>
         </div>
-
-        <div class="footer-box">
-            <h3>Sosyal Medya</h3>
-            <p>Instagram</p>
-            <p>Facebook</p>
-            <p>Twitter</p>
-        </div>
-
     </div>
 
     <div class="footer-bottom">
