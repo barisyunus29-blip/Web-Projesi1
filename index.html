@@ -1,24 +1,39 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoParça | Yedek Parça Satış</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Araba Parçaları Mağazası</title>    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-  </head>
+<header>
+    <div class="logo">AutoParça</div>
+    <input type="text" id="searchInput" placeholder="Ürün ara...">
+    <select id="categoryFilter">
+        <option value="all">Tüm Kategoriler</option>
+        <option value="motor">Motor</option>
+        <option value="fren">Fren</option>
+        <option value="elektrik">Elektrik</option>
+    </select>
+    <div class="cart">🛒 <span id="cart-count">0</span></div>
+</header>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
-  </body>
+<section class="hero">
+    <h1>Aracınıza Uygun Parçalar</h1>
+    <p>Garantili ve Uygun Fiyatlı Ürünler</p>
+</section>
 
+<section class="products">
+    <h2>Ürünler</h2>
+    <div class="product-list" id="productList"></div>
+</section>
+
+<footer>
+    <p>© 2026 AutoParça | Üniversite Projesi</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
 </html>
