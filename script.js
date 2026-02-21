@@ -10,6 +10,9 @@ const products = [
 const productList = document.getElementById("productList");
 const searchInput = document.getElementById("searchInput");
 const categoryFilter = document.getElementById("categoryFilter");
+const cartPanel = document.getElementById("cartPanel");
+const overlay = document.getElementById("overlay");
+const cartButton = document.getElementById("cartButton");
 
 function displayProducts() {
     productList.innerHTML = "";
@@ -17,12 +20,10 @@ function displayProducts() {
     const searchValue = searchInput.value.toLowerCase();
     const selectedCategory = categoryFilter.value;
 
-    const filteredProducts = products.filter(product => {
-        return (
-            product.name.toLowerCase().includes(searchValue) &&
-            (selectedCategory === "all" || product.category === selectedCategory)
-        );
-    });
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchValue) &&
+        (selectedCategory === "all" || product.category === selectedCategory)
+    );
 
     filteredProducts.forEach(product => {
         const div = document.createElement("div");
@@ -41,13 +42,11 @@ function displayProducts() {
 
 function addToCart(product) {
     const existing = cart.find(item => item.name === product.name);
-
     if (existing) {
         existing.quantity++;
     } else {
         cart.push({ ...product, quantity: 1 });
     }
-
     saveCart();
     updateCart();
 }
@@ -107,10 +106,6 @@ function clearCart() {
     updateCart();
 }
 
-function toggleCart() {
-    document.getElementById("cartPanel").classList.toggle("active");
-}
-
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
@@ -140,6 +135,16 @@ function completePayment() {
     clearCart();
     document.getElementById("orderSummary").innerHTML = "";
 }
+
+cartButton.addEventListener("click", () => {
+    cartPanel.classList.toggle("active");
+    overlay.classList.toggle("active");
+});
+
+overlay.addEventListener("click", () => {
+    cartPanel.classList.remove("active");
+    overlay.classList.remove("active");
+});
 
 searchInput.addEventListener("input", displayProducts);
 categoryFilter.addEventListener("change", displayProducts);
