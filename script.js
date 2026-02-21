@@ -1,12 +1,36 @@
 let cartCount = 0;
 
 const products = [
-    { name: "Fren Balatası", category: "fren", price: 750 },
-    { name: "Disk Fren Seti", category: "fren", price: 1200 },
-    { name: "Motor Yağı", category: "motor", price: 450 },
-    { name: "Yağ Filtresi", category: "motor", price: 250 },
-    { name: "Akü 72Ah", category: "elektrik", price: 2500 },
-    { name: "Far Ampulü", category: "elektrik", price: 150 }
+    { 
+        name: "Fren Balatası", 
+        category: "fren", 
+        price: 750,
+        image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e"
+    },
+    { 
+        name: "Disk Fren Seti", 
+        category: "fren", 
+        price: 1200,
+        image: "https://images.unsplash.com/photo-1606577924006-27d39b132ae2"
+    },
+    { 
+        name: "Motor Yağı", 
+        category: "motor", 
+        price: 450,
+        image: "https://images.unsplash.com/photo-1625047509248-ec889cbff17f"
+    },
+    { 
+        name: "Far", 
+        category: "elektrik", 
+        price: 1800,
+        image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d"
+    },
+    { 
+        name: "Akü 72Ah", 
+        category: "elektrik", 
+        price: 2500,
+        image: "https://images.unsplash.com/photo-1581091215367-59ab6c7f4d2e"
+    }
 ];
 
 const productList = document.getElementById("productList");
@@ -30,6 +54,7 @@ function displayProducts() {
         div.classList.add("product");
 
         div.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
             <h3>${product.name}</h3>
             <p>Fiyat: ₺${product.price}</p>
             <button onclick="addToCart()">Sepete Ekle</button>
