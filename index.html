@@ -2,73 +2,74 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Web Projesi | Donanım Market</title>
-
-    <!-- CSS BAĞLANTISI (GitHub Pages Uyumlu) -->
-    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoParça | Yedek Parça</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <div class="logo">Donanım Market</div>
+    <div class="logo">AutoParça</div>
 
-    <div class="user-area">
-        <button id="loginBtn" onclick="openLogin()">Giriş Yap</button>
-        <span id="welcomeUser" style="display:none;"></span>
-        <button id="logoutBtn" onclick="logout()" style="display:none;">Çıkış</button>
-    </div>
+    <input type="text" id="searchInput" placeholder="Ürün ara...">
+
+    <select id="categoryFilter">
+        <option value="all">Tüm Kategoriler</option>
+        <option value="motor">Motor</option>
+        <option value="fren">Fren</option>
+        <option value="elektrik">Elektrik</option>
+    </select>
 
     <div class="cart" id="cartButton">
         🛒 <span id="cart-count">0</span>
     </div>
 </header>
 
-<section class="products">
-
-    <div class="product">
-        <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7" />
-        <h3>Ekran Kartı</h3>
-        <p>5000 TL</p>
-        <button onclick="addToCart('Ekran Kartı',5000)">Sepete Ekle</button>
-    </div>
-
-    <div class="product">
-        <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9" />
-        <h3>İşlemci</h3>
-        <p>3500 TL</p>
-        <button onclick="addToCart('İşlemci',3500)">Sepete Ekle</button>
-    </div>
-
-    <div class="product">
-        <img src="https://images.unsplash.com/photo-1587202372616-b43abea06c2a" />
-        <h3>RAM 16GB</h3>
-        <p>1200 TL</p>
-        <button onclick="addToCart('RAM 16GB',1200)">Sepete Ekle</button>
-    </div>
-
+<section class="hero">
+    <h1>Aracınıza Uygun Parçalar</h1>
+    <p>Kaliteli, Garantili ve Uygun Fiyatlı Ürünler</p>
 </section>
+
+<section class="products">
+    <h2>Ürünler</h2>
+    <div class="product-list" id="productList"></div>
+</section>
+
+<!-- Blur Arka Plan -->
+<div class="overlay" id="overlay"></div>
 
 <!-- SEPET PANELİ -->
 <div class="cart-panel" id="cartPanel">
-    <h2>Sepet</h2>
-    <div id="cart-items"></div>
-    <h3 id="totalPrice">Toplam: 0 TL</h3>
+    <h3>Sepetim</h3>
+    <ul id="cartItems"></ul>
+    <p><strong>Toplam: ₺<span id="totalPrice">0</span></strong></p>
+    <button onclick="clearCart()">Sepeti Temizle</button>
+    <button onclick="checkout()">Siparişi Tamamla</button>
+    <div id="orderSummary"></div>
 </div>
 
-<!-- LOGIN MODAL -->
-<div id="loginModal" class="login-modal">
-    <div class="login-box">
-        <h2>Kullanıcı Girişi</h2>
-        <input type="text" id="username" placeholder="Kullanıcı Adı">
-        <input type="password" id="password" placeholder="Şifre">
-        <button onclick="login()">Giriş Yap</button>
-        <button onclick="register()">Kayıt Ol</button>
-        <p id="loginMessage"></p>
+<footer>
+    <div class="footer-container">
+        <div class="footer-box">
+            <h3>İletişim</h3>
+            <p>Kırşehir, Türkiye</p>
+            <p>0555 555 55 55</p>
+            <p>info@autoparca.com</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Çalışma Saatleri</h3>
+            <p>Hafta içi: 09:00 - 18:00</p>
+            <p>Cumartesi: 10:00 - 16:00</p>
+            <p>Pazar: Kapalı</p>
+        </div>
     </div>
-</div>
 
-<!-- JS BAĞLANTISI (GitHub Pages Uyumlu) -->
-<script src="./script.js"></script>
+    <div class="footer-bottom">
+        © 2026 AutoParça | Üniversite Projesi
+    </div>
+</footer>
 
+<script src="script.js"></script>
 </body>
 </html>
