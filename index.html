@@ -20,8 +20,18 @@
         <option value="elektrik">Elektrik</option>
     </select>
 
-    <div class="cart" id="cartButton">
-        🛒 <span id="cart-count">0</span>
+    <div class="user-actions">
+        <div id="userProfile" style="display: none;">
+            <span id="userNameDisplay"></span>
+            <button onclick="logout()" class="logout-btn">Çıkış</button>
+        </div>
+        <div id="authLinks">
+            <a href="login.html" class="auth-link">Giriş Yap</a>
+            <a href="register.html" class="auth-link">Kayıt Ol</a>
+        </div>
+        <div class="cart" id="cartButton">
+            🛒 <span id="cart-count">0</span>
+        </div>
     </div>
 </header>
 

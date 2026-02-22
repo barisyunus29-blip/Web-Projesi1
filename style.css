@@ -140,3 +140,56 @@ footer {
     text-align: center;
     margin-top: 20px;
 }
+
+
+/* Kullanıcı İşlemleri ve Butonlar */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#authLinks {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.auth-link:hover {
+    background-color: white;
+    color: #333;
+}
+
+#userProfile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+#userNameDisplay {
+    font-weight: bold;
+}
+
+.logout-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.logout-btn:hover {
+    background-color: #ff3333;
+}

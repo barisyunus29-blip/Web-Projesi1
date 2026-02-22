@@ -151,3 +151,30 @@ categoryFilter.addEventListener("change", displayProducts);
 
 displayProducts();
 updateCart();
+
+// Giriş Kontrolü ve Profil Yönetimi
+function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userProfile = document.getElementById("userProfile");
+    const authLinks = document.getElementById("authLinks");
+    const userNameDisplay = document.getElementById("userNameDisplay");
+
+    if (isLoggedIn) {
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        userProfile.style.display = "flex";
+        authLinks.style.display = "none";
+        userNameDisplay.innerText = "Hoş geldin, " + (currentUser ? currentUser.fullname : "Kullanıcı");
+    } else {
+        userProfile.style.display = "none";
+        authLinks.style.display = "flex";
+    }
+}
+
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("currentUser");
+    window.location.reload();
+}
+
+// Sayfa yüklendiğinde giriş durumunu kontrol et
+document.addEventListener("DOMContentLoaded", checkLoginStatus);
