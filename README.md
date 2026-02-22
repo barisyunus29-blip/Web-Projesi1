@@ -1,9 +1,18 @@
 # Web-Projesi1
-# proje
- Araba Parçaları
+# proje açıklaması
+ Araba Parçaları satan uygulama
 # hedef kullanıcılar
- İnsanlar
+ Araba Şirketleri,Bireysel kullanıcılar
 # Temel özellikler
+ Kullanıcı giriş
+ Araba parçaları sınıflandırma
+ Satın alım
 # Kullanılan Teknolojiler
+Chat gbt
+Manus
+Gemini
 # Kullanılan Diller
+HTML
+JavaScript
+CSS
 # Kurulum
