@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kayıt Ol</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+<div class="register-container">
+    <div class="register-box">
+        <h2>Hesap Oluştur</h2>
+
+        <input type="text" id="fullname" placeholder="Ad Soyad">
+        <input type="email" id="email" placeholder="E-posta">
+        <input type="password" id="password" placeholder="Şifre">
+        <input type="password" id="confirmPassword" placeholder="Şifre Tekrar">
+
+        <button onclick="registerUser()">Kayıt Ol</button>
+
+        <p id="message"></p>
+
+        <a href="login.html" class="login-link">Zaten hesabın var mı? Giriş Yap</a>
+    </div>
+</div>
+
+<script src="register.js"></script>
+</body>
+</html>
